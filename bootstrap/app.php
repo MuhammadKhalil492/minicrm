@@ -11,9 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         then: function () {
-            Route::middleware('web')
-                ->prefix('dashboard_v2')
-                ->name('dahboard_v2/')
+            Route::middleware(['web','auth'])
                 ->group(base_path('routes/dashboard.php'));
         }
     )

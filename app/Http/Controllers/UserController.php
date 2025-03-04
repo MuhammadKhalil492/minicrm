@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -43,9 +43,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $user)
+    public function edit($uuid)
     {
-        //
+        // dd($uuid);
+        return view('users.edit',compact('uuid'));
     }
 
     /**

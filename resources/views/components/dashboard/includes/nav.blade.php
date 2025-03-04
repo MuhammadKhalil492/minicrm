@@ -12,7 +12,7 @@
             <x-slot:brand>
                 <div class="ml-3 pt-2">
                     <a href="#">
-                        <img src="#" alt="Atocars Logo">
+                        <img src="#" alt="SM">
                     </a>
                 </div>
             </x-slot:brand>
@@ -96,7 +96,7 @@
 
 
                     {{-- Sign Out --}}
-                    <form method="POST" action="{{ route('logout') }}">
+                    {{-- <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
@@ -104,7 +104,7 @@
                             </svg>
                             {{ __('Sign out') }}
                         </button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

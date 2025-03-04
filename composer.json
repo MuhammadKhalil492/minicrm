@@ -7,11 +7,16 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "codeat3/blade-evil-icons": "^1.6",
         "filament/filament": "^3.2",
+        "filament/spatie-laravel-media-library-plugin": "^3.2",
+        "kodeine/laravel-meta": "^2.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6",
-        "robsontenorio/mary": "^1.41"
+        "owenvoke/blade-fontawesome": "^2.9",
+        "robsontenorio/mary": "^1.41",
+        "spatie/laravel-medialibrary": "^11.12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
