@@ -1,5 +1,4 @@
 import preset from '../../vendor/filament/support/tailwind.config.preset';
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 const colors = require('tailwindcss/colors')
 
@@ -7,7 +6,6 @@ const colors = require('tailwindcss/colors')
 export default {
     presets: [
         preset,
-        require("../../vendor/wireui/wireui/tailwind.config.js")
     ],
     content: [
         "./resources/**/*.blade.php",
@@ -21,10 +19,10 @@ export default {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         "./vendor/robsontenorio/mary/src/View/Components/**/*.php",
-        "./vendor/wireui/wireui/src/*.php",
-        "./vendor/wireui/wireui/ts/**/*.ts",
-        "./vendor/wireui/wireui/src/WireUi/**/*.php",
-        "./vendor/wireui/wireui/src/Components/**/*.php",
+        // "./vendor/wireui/wireui/src/*.php",
+        // "./vendor/wireui/wireui/ts/**/*.ts",
+        // "./vendor/wireui/wireui/src/WireUi/**/*.php",
+        // "./vendor/wireui/wireui/src/Components/**/*.php",
     ],
     daisyui: {
         themes: [
@@ -133,7 +131,6 @@ export default {
         forms,
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
-        require('flowbite/plugin'),
         require("daisyui")
     ],
 };
