@@ -1,3 +1,3 @@
 <x-dashboard.layouts.app>
-    {{-- <livwire:dashboard.users.edit-user :user="$user"/> --}}
+    <livewire:dashboard.users.edit-user :uuid="$uuid"/>
 </x-dashboard.layouts.app>

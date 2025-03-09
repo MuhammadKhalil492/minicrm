@@ -45,8 +45,7 @@ class UserController extends Controller
      */
     public function edit($uuid)
     {
-        // dd($uuid);
-        return view('users.edit',compact('uuid'));
+        return view('users.edit', compact('uuid'));
     }
 
     /**

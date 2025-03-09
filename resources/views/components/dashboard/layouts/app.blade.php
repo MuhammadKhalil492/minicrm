@@ -20,16 +20,18 @@
     {{-- MAIN --}}
     <x-mary-main full-width>
         {{-- SIDEBAR --}}
-       <x-dashboard.includes.sidebar/>
+        <x-dashboard.includes.sidebar />
 
         {{-- The `$slot` goes here --}}
         <x-slot:content>
+            @livewire('notifications')
             {{ $slot }}
         </x-slot:content>
     </x-mary-main>
-
     {{-- Toast --}}
     <x-mary-toast />
+    @filamentScripts
+    @vite('resources/js/app.js')
 </body>
 
 </html>

@@ -68,6 +68,18 @@ class User extends Authenticatable implements HasMedia
         'language',
         'status',
     ];
+    /**
+     * Find a model by its UUID or fail.
+     *
+     * @param  string  $uuid
+     * @return static
+     *
+     * @throws ModelNotFoundException
+     */
+    public static function findByUuidOrFail(string $uuid): self
+    {
+        return static::where('uuid', $uuid)->firstOrFail();
+    }
 
     /**
      * Register media collections for the user model.

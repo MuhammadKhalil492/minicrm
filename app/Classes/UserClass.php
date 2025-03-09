@@ -10,6 +10,7 @@ class UserClass
 
 
     public function __construct()
+    
     {
         $this->model = new User();
     }
@@ -38,7 +39,7 @@ class UserClass
      *
      * @return User The created or updated User model instance
      */
-    public function createUser($fields, $user_id = null)
+    public function saveUser($fields, $user_id = null)
     {
         if ($user_id) {
             $user = User::find($user_id);
@@ -71,5 +72,21 @@ class UserClass
         $user->setMeta($metaData);
         $user->save();
         return true;
+    }
+    /**
+     * Get meta fields
+     */
+    public function getMetaFields($user)
+    {
+        $metaFields = $this->model->meta_fields;
+        $metaData = [];
+        foreach ($metaFields as $meta_field) {
+            if($user->hasMeta($meta_field)) {
+                $metaData[$meta_field] = $user->getMeta($meta_field);
+            }
+        }
+        // dd($metaData);
+
+        return $metaData;
     }
 }

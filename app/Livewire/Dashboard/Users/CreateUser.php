@@ -52,13 +52,13 @@ class CreateUser extends Component implements HasForms
                             ->schema([
                                 Section::make('Personal Information')
                                     ->schema([
-                                        TextInput::make('first_name')
+                                        TextInput::make('meta.first_name')
                                             ->label('First Name *')
                                             ->minLength(4)
                                             ->maxLength(30)
                                             ->inlineLabel()
                                             ->rules('required|min:4|max:30'),
-                                        TextInput::make('last_name')
+                                        TextInput::make('meta.last_name')
                                             ->label('Last Name *')
                                             ->rules('required|min:4|max:30')
                                             ->inlineLabel()
@@ -70,15 +70,15 @@ class CreateUser extends Component implements HasForms
                                             ->email()
                                             ->inlineLabel()
                                             ->maxLength(255),
-                                        TextInput::make('phone')
+                                        TextInput::make('meta.phone')
                                             ->inlineLabel()
                                             ->maxLength(255),
-                                        Select::make('status')
+                                        Select::make('meta.status')
                                             ->label('Status *')
                                             ->rules('required|min:4|max:30')
                                             ->options(UserStatusEnum::class)
                                             ->inlineLabel(),
-                                        Checkbox::make('send_email')->label('Send Email'),
+                                        Checkbox::make('meta.send_email')->label('Send Email'),
                                     ]),
                             ]),
                     ])
@@ -89,14 +89,14 @@ class CreateUser extends Component implements HasForms
     public function create(): void
     {
         $data = $this->form->getState();
-        $data['name'] = $data['first_name'] . ' ' . $data['last_name'];
+        $data['name'] = $data['meta']['first_name'] . ' ' . $data['meta']['last_name'];
         $password = Str::random(10);
         $data['password'] = Hash::make($password);
         try {
             DB::beginTransaction();
-            $user = (new UserClass())->createUser($data);
+            $user = (new UserClass())->saveUser($data);
             if ($user) {
-                (new UserClass())->saveUserMeta($user, $data);
+                (new UserClass())->saveUserMeta($user, $data['meta']);
             }
             Notification::make()
                 ->title('User created successfully')
