@@ -11,10 +11,12 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Models\Traits\HasUuidTrait;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Metable, InteractsWithMedia,HasUuidTrait;
+    use HasFactory, Notifiable, Metable, InteractsWithMedia, HasUuidTrait, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -49,7 +51,7 @@ class User extends Authenticatable implements HasMedia
             'password' => 'hashed',
         ];
     }
-    
+
     protected $metaTable = 'users_meta';
 
     public $meta_fields = [

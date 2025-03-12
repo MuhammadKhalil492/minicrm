@@ -3,7 +3,6 @@
 namespace App\Livewire\Dashboard\Users;
 
 use Livewire\Component;
-use App\Models\Shop\Product;
 use App\Models\User;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -13,14 +12,17 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use App\Classes\UserClass;
-use Filament\Actions\Action;
+// use Filament\Actions\Action;
+use Filament\Tables\Actions\Action;
+use Filament\Notifications\Notification;
 use Filament\Tables\Actions\ActionGroup;
 
-class ListUser extends Component implements HasTable,HasForms
+class ListUser extends Component implements HasTable, HasForms
 {
     use InteractsWithTable, InteractsWithForms;
-    public $users=[];
-    public function usersQuery(){
+    public $users = [];
+    public function usersQuery()
+    {
         return (new UserClass())->getAllUserList();
     }
 
@@ -39,16 +41,32 @@ class ListUser extends Component implements HasTable,HasForms
                 // ...
             ])
             ->actions([
-              ActionGroup::make([
-               Action::make('edit')
-               ->url(function($record){
-                    return route('dashboard_v2_user_edit',['uuid' => $record->uuid]);
-                })
-              ])  
-            ])
-            ->bulkActions([
-                // ...
+                ActionGroup::make([
+                    Action::make('edit')
+                        ->label('Edit User')
+                        ->icon('heroicon-o-pencil')
+                        ->color('bg-red-500')
+                        ->url(function ($record) {
+                            return route('dashboard_v2_user_edit', ['uuid' => $record->uuid]);
+                        }),
+                    Action::make('delete')
+                        ->requiresConfirmation()
+                        ->label('Delete User')
+                        ->icon('heroicon-o-trash')
+                        ->color('bg-red-500')
+                        ->action(fn(User $record) => $record->delete())
+                ])->button(),
             ]);
+    }
+    public function deleteUser(User $record)
+    {
+        $record->delete();
+
+        Notification::make()
+            ->title('User Deleted')
+            ->body('The user has been deleted successfully.')
+            ->success()
+            ->send();
     }
     public function render()
     {
