@@ -1,4 +1,3 @@
 <x-dashboard.layouts.app>
-    ss
-    <livewire:dashboard.users.create-user />
+    <livewire:dashboard.clients.list-client />
 </x-dashboard.layouts.app>

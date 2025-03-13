@@ -12,11 +12,13 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Models\Traits\HasUuidTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements HasMedia
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, Metable, InteractsWithMedia, HasUuidTrait, SoftDeletes;
+    use HasFactory, Notifiable, Metable, InteractsWithMedia, HasUuidTrait, SoftDeletes,HasRoles;
+    
 
     /**
      * The attributes that are mass assignable.
