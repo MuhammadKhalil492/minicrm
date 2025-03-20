@@ -3,6 +3,7 @@
 use App\Enums\RoleEnum;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,6 +21,11 @@ Route::prefix('dashboard_v2')->group(function () {
             Route::get('/clients', 'index')->name('dashboard_v2_clients');
             Route::get('/clients/create', 'create')->name('dashboard_v2_client_create');
             Route::get('/clients/edit/{uuid}', 'edit')->name('dashboard_v2_client_edit');
+        });
+        Route::controller(ProjectController::class)->group(function () {
+            Route::get('/projects', 'index')->name('dashboard_v2_projects');
+            Route::get('/projects/create', 'create')->name('dashboard_v2_project_create');
+            Route::get('/projects/edit/{uuid}', 'edit')->name('dashboard_v2_project_edit');
         });
     });
 });

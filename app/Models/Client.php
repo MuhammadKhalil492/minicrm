@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Traits\HasUuidTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
@@ -39,5 +40,16 @@ class Client extends Model
     public static function findByUuidOrFail(string $uuid): self
     {
         return static::where('uuid', $uuid)->firstOrFail();
+    }
+
+
+    /**
+     * Get the projects associated with the client.
+     *
+     * @return BelongsToMany The relationship instance between clients and projects.
+     */
+    public function projects(): BelongsToMany
+    {
+        return $this->belongsToMany(Project::class, 'client_projects');
     }
 }
