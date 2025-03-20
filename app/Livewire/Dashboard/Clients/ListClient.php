@@ -57,16 +57,16 @@ class ListClient extends Component implements HasForms, HasTable
                 ])->button(),
             ]);
     }
-    public function deleteUser(User $record)
-    {
-        $record->delete();
+    // public function deleteClient(Client $record)
+    // {
+    //     $record->delete();
 
-        Notification::make()
-            ->title('User Deleted')
-            ->body('The user has been deleted successfully.')
-            ->success()
-            ->send();
-    }
+    //     Notification::make()
+    //         ->title('User Deleted')
+    //         ->body('The user has been deleted successfully.')
+    //         ->success()
+    //         ->send();
+    // }
     public function render()
     {
         return view('livewire.dashboard.clients.list-client');
